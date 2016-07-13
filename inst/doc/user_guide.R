@@ -96,15 +96,16 @@ legend("topright", legend = c("Males", "Females"),
 prevalence_counted(prevsim$entrydate, 
                    prevsim$eventdate, 
                    prevsim$status, 
-                   start="2004-01-30", 
-                   num_reg_years=9)
+                   index_date="2013-01-30",
+                   num_reg_years=9) 
 
 ## ----prevalencetotal, error = TRUE---------------------------------------
 prevalence_total <- prevalence(Surv(time, status) ~ sex(sex) + age(age) + 
                                    entry(entrydate) + event(eventdate),
                                prevsim, num_years_to_estimate=c(3, 5, 10), 
-                               population_size=1e6, cure=5, 
-                               start='2004-01-30', num_reg_years=9)
+                               population_size=1e6, 
+                               index_date='2013-01-30',
+                               num_reg_years=9, cure=5) 
 
 ## ------------------------------------------------------------------------
 prevalence_total
