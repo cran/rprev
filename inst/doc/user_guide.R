@@ -50,8 +50,8 @@ legend("topright", legend=substring(names(km2$strata), 25, 32), lty = 1,
 plot(km, lwd=2, col="blue", mark.time=F, conf.int=T, xlab="Days", 
      ylab="Survival probability")
 num_reg_years <- 9
-registry_years <- determine_registry_years(start='2004-01-30', 
-                                           num_reg_years=num_reg_years)
+registry_years <- determine_yearly_endpoints(date='2004-01-30', 
+                                             num_years=num_reg_years)
 sapply(seq(num_reg_years),
        function(i) lines(survfit(Surv(time, status) ~ 1, 
                                  data=prevsim_r[prevsim_r$entrydate >= 
@@ -103,7 +103,6 @@ prevalence_counted(prevsim$entrydate,
 prevalence_total <- prevalence(Surv(time, status) ~ sex(sex) + age(age) + 
                                    entry(entrydate) + event(eventdate),
                                prevsim, num_years_to_estimate=c(3, 5, 10), 
-                               population_size=1e6, 
                                index_date='2013-01-30',
                                num_reg_years=9, cure=5) 
 
