@@ -142,7 +142,6 @@ summary.survfit.prev <- function(object, years=c(1, 3, 5), ...) {
 #' @export
 #' @importFrom magrittr "%>%"
 plot.survfit.prev <- function(x, ...) {
-
     num_boot <- dim(x$surv)[1]
     num_days <- dim(x$surv)[2]
     if (num_days != length(x$time))
