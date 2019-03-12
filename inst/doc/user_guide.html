@@ -12,7 +12,7 @@
 
 <meta name="author" content="S J Lax and S E Lacy" />
 
-<meta name="date" content="2019-01-21" />
+<meta name="date" content="2019-03-12" />
 
 <title>rprev User Guide</title>
 
@@ -92,7 +92,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">rprev User Guide</h1>
 <h4 class="author"><em>S J Lax and S E Lacy</em></h4>
-<h4 class="date"><em>2019-01-21</em></h4>
+<h4 class="date"><em>2019-03-12</em></h4>
 
 
 
@@ -160,7 +160,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 3 years: 208 (20.8 per 1e+05) 
 ## 5 years: 304 (30.4 per 1e+05) 
 ## 10 years: 514 (51.4 per 1e+05) 
-## 20 years: 767.42 (76.74 per 1e+05)</code></pre>
+## 20 years: 766.6 (76.66 per 1e+05)</code></pre>
 <p>More detail from the <code>prevalence</code> object can be extracted using <code>summary</code>, including the p-value from a hypothesis test (Poisson) of the difference between the predicted and counted prevalence for the available years of registry data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(prevalence_total)</code></pre></div>
 <pre><code>## Prevalence 
@@ -169,7 +169,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 3 years: 208 (20.8 per 1e+05) 
 ## 5 years: 304 (30.4 per 1e+05) 
 ## 10 years: 514 (51.4 per 1e+05) 
-## 20 years: 767.42 (76.74 per 1e+05) 
+## 20 years: 766.6 (76.66 per 1e+05) 
 ## 
 ## Registry Data
 ## ~~~~~~~~~~~~~
@@ -229,28 +229,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 
 ## $y20
 ## $y20$absolute.prevalence
-## [1] 767.42
+## [1] 766.6
 ## 
 ## $y20$per100K
-## [1] 76.74
+## [1] 76.66
 ## 
 ## $y20$per100K.upper
-## [1] 85.77
+## [1] 85.67
 ## 
 ## $y20$per100K.lower
-## [1] 67.71</code></pre>
+## [1] 67.65</code></pre>
 <p>Additional information about the simulation can be found in the <code>simulated</code> object, which contains a <code>data.table</code> containing information about the simulated incident population. Each row corresponds to a simulated incident individual, with the <em>sim</em> column specifying the simulation number. Simulated covariate values are also included, which for this example is just <em>sex</em> and <em>age</em>. <em>alive_at_index</em> is a binary value of whether this individual was still alive at the index date, with the subsequent columns indicating if they contributed to any n-year prevalence. <em>prev_registry</em> measures whether the person was contributing to prevalence after being incident at the same time the registry was collecting data, allowing for a direct comparison between the known prevalence for that time-frame and the simulated prevalence.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(prevalence_total<span class="op">$</span>simulated)</code></pre></div>
 <pre><code>##    sim sex      age incident_date alive_at_index prev_3yr prev_5yr
-## 1:   1   M 58.42879    1993-02-08              1        0        0
-## 2:   1   M 75.38451    1993-02-09              0        0        0
-## 3:   1   M 79.29818    1993-02-09              0        0        0
-## 4:   1   M 70.30231    1993-02-17              0        0        0
-## 5:   1   M 64.08466    1993-02-21              0        0        0
-## 6:   1   M 64.55255    1993-02-28              0        0        0
+## 1:   1   M 69.80597    1993-02-03              0        0        0
+## 2:   1   M 48.41537    1993-02-03              1        0        0
+## 3:   1   M 65.62202    1993-02-06              0        0        0
+## 4:   1   M 75.18931    1993-02-23              0        0        0
+## 5:   1   M 78.93927    1993-02-25              0        0        0
+## 6:   1   M 74.06112    1993-03-14              0        0        0
 ##    prev_10yr prev_20yr prev_registry
-## 1:         0         1             0
-## 2:         0         0             0
+## 1:         0         0             0
+## 2:         0         1             0
 ## 3:         0         0             0
 ## 4:         0         0             0
 ## 5:         0         0             0
@@ -297,7 +297,7 @@ llog</code></pre></div>
 ## 3 years: 208 (20.8 per 1e+05) 
 ## 5 years: 304 (30.4 per 1e+05) 
 ## 10 years: 514 (51.4 per 1e+05) 
-## 20 years: 807.31 (80.73 per 1e+05)</code></pre>
+## 20 years: 805.6 (80.56 per 1e+05)</code></pre>
 </div>
 <div id="cure-models" class="section level2">
 <h2>Cure models</h2>
@@ -316,14 +316,14 @@ llog</code></pre></div>
            <span class="dt">death_column =</span> <span class="st">'eventdate'</span>,
            <span class="dt">N_boot =</span> <span class="dv">30</span>)</code></pre></div>
 <pre><code>## Estimated prevalence at 2013-01-30:
-## 20 years: 802.83 (80.28 per 1e+05)</code></pre>
+## 20 years: 798.87 (79.89 per 1e+05)</code></pre>
 <p>The estimates from the full model are displayed below for comparison.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prevalence_total</code></pre></div>
 <pre><code>## Estimated prevalence at 2013-01-30:
 ## 3 years: 208 (20.8 per 1e+05) 
 ## 5 years: 304 (30.4 per 1e+05) 
 ## 10 years: 514 (51.4 per 1e+05) 
-## 20 years: 767.42 (76.74 per 1e+05)</code></pre>
+## 20 years: 766.6 (76.66 per 1e+05)</code></pre>
 <p>An additional cure model implementation that can also be used are the mixture and non-mixture cure models as implemented by <code>flexsurvcure</code>. These are fitted in the same way as standard <code>flexsurv</code> object as described above. These are also considerably slower to run than non-cure survival models.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mixture_cure &lt;-<span class="st"> </span>flexsurvcure<span class="op">::</span><span class="kw">flexsurvcure</span>(<span class="kw">Surv</span>(time, status) <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>sex, <span class="dt">data=</span>prevsim, <span class="dt">dist=</span><span class="st">'weibull'</span>, <span class="dt">link=</span><span class="st">'logistic'</span>, <span class="dt">mixture=</span><span class="ot">TRUE</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prevalence</span>(<span class="dt">index=</span><span class="st">'2013-01-30'</span>, 
@@ -335,7 +335,7 @@ llog</code></pre></div>
            <span class="dt">death_column =</span> <span class="st">'eventdate'</span>,
            <span class="dt">N_boot =</span> <span class="dv">30</span>)</code></pre></div>
 <pre><code>## Estimated prevalence at 2013-01-30:
-## 20 years: 814.1 (81.41 per 1e+05)</code></pre>
+## 20 years: 817.4 (81.74 per 1e+05)</code></pre>
 </div>
 </div>
 <div id="custom-incidence-and-survival-models" class="section level1">
@@ -442,12 +442,12 @@ draw_incident_population &lt;-<span class="st"> </span><span class="cf">function
 <pre><code>## Incidence model passed all tests.</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(inc_times)</code></pre></div>
 <pre><code>##   incident_time
-## 1      3.946285
-## 2      4.930199
-## 3      7.965233
-## 4     12.087281
-## 5     15.269141
-## 6     16.795121</code></pre>
+## 1     0.9501772
+## 2    16.3684762
+## 3    25.5151841
+## 4    25.5195421
+## 5    25.8195994
+## 6    30.2059301</code></pre>
 <p>Once the object has been validated, it can be used in <code>prevalence</code> through the <code>inc_model</code> argument. Note that an additional argument is required to provide the name of the column in the data set that provides the incident dates, since this is no longer provided by the unused <code>inc_formula</code> option.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prevalence</span>(<span class="dt">index=</span><span class="st">'2013-01-30'</span>, 
            <span class="dt">num_years_to_estimate=</span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>), 
@@ -465,7 +465,7 @@ draw_incident_population &lt;-<span class="st"> </span><span class="cf">function
 ## 3 years: 208 (20.8 per 1e+05) 
 ## 5 years: 304 (30.4 per 1e+05) 
 ## 10 years: 514 (51.4 per 1e+05) 
-## 20 years: 840.48 (84.05 per 1e+05)</code></pre>
+## 20 years: 840.11 (84.01 per 1e+05)</code></pre>
 </div>
 <div id="survival" class="section level2">
 <h2>Survival</h2>
@@ -537,7 +537,7 @@ predict_survival_probability &lt;-<span class="st"> </span><span class="cf">func
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">probs &lt;-<span class="st"> </span><span class="kw">validate_survival_model</span>(survobj, prevsim)</code></pre></div>
 <pre><code>## Survival model passed all tests.</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(probs)</code></pre></div>
-<pre><code>## [1] 0.3935262 0.3919880 0.4781452 0.4644486 0.4028664 0.3992321</code></pre>
+<pre><code>## [1] 0.3983509 0.4198864 0.3940496 0.4021431 0.4160106 0.4077083</code></pre>
 <p>Plugging this model into the <code>prevalence</code> function now works.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prevalence</span>(<span class="dt">index=</span><span class="st">'2013-01-30'</span>, 
            <span class="dt">num_years_to_estimate=</span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>), 
@@ -551,7 +551,7 @@ predict_survival_probability &lt;-<span class="st"> </span><span class="cf">func
 ## 3 years: 208 (20.8 per 1e+05) 
 ## 5 years: 304 (30.4 per 1e+05) 
 ## 10 years: 514 (51.4 per 1e+05) 
-## 20 years: 898.5 (89.85 per 1e+05)</code></pre>
+## 20 years: 896.67 (89.67 per 1e+05)</code></pre>
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">

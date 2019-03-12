@@ -1,6 +1,6 @@
-ee161edfde49afc894e3684d32773225 *DESCRIPTION
+61a617414bf6a0365df506ffd4cf9b60 *DESCRIPTION
 db051deb875295487853bb7db18e980b *NAMESPACE
-fbce4a00670b2a0ab76653411e579eb6 *NEWS.md
+dcf81019bb2d750b725d805c7ea365ce *NEWS.md
 ea0243d20842b72fce585a51a7a40358 *R/data.R
 bf74fae45a5c880a64b7c020e512cbc4 *R/diagnostics.R
 8a4688651a65a5757dbbb0384d149221 *R/fixedcure.R
@@ -22,10 +22,10 @@ a08462e25e36d5cefbb77bc0c5fe5d40 *R/utils.R
 4a38a3efd8d6c7aa5fdec1ab3ff162df *data/prevsim.rda
 4eaa8176f6b79afb8844c69450d70ab8 *inst/doc/diagnostics.R
 3f232792702c1d5a94d7f30fdb307b6a *inst/doc/diagnostics.Rmd
-837afd08406d52e4ed35b83cff4f2061 *inst/doc/diagnostics.html
+9962336f75f8a33a887b5f19c47ae6c4 *inst/doc/diagnostics.html
 97882d09316a1e02c7a2027df133a32f *inst/doc/user_guide.R
 eb8068eb16a43e94abc1e21587b52487 *inst/doc/user_guide.Rmd
-22965a5ab06eeee1e14b5293d50c830e *inst/doc/user_guide.html
+00f016c8cbef9a6fda54fe1cd7fccf3d *inst/doc/user_guide.html
 41b0562462840e4d3ce11a00256f6ece *man/UKmortality.Rd
 b332522ff6ac38b8f4073c5a6d3088ce *man/counted_prevalence.Rd
 be928ddfb2718e980adb9eedb3c4cfca *man/draw_incident_population.Rd
@@ -55,10 +55,10 @@ bd702d03d4e38c3645e69683e1f673f7 *tests/testthat/cache/incidence/incidence_3.rds
 99b5f65d170f01543d7e8e79a969d513 *tests/testthat/cache/incidence/meanir_2.rds
 20ca221e58f4c7532bd1826d30051d3a *tests/testthat/cache/incidence/meanir_3.rds
 922462b70433dc7a7a882828c07abc3c *tests/testthat/test_curemodels.R
-7fc6a920b7346b7960fe61780d354dbe *tests/testthat/test_diagnostics.R
+c3d3283832ac77e43bf6a20f47c800b4 *tests/testthat/test_diagnostics.R
 37726d4ac44dd511d1020f18ef1268dc *tests/testthat/test_incidence.R
 3720a8836f97e1af17c745001a862fbc *tests/testthat/test_incidence_model.R
-dbb0f293e919cc69551e5c168d0030e2 *tests/testthat/test_prevalence.R
+86fea60c8da63d3c1fbe8001fc2e6485 *tests/testthat/test_prevalence.R
 8115ed6495406a2c1bace3f9d406e8d5 *tests/testthat/test_survival_model.R
 dec160c1239032f0d4f87d983ccb0ee9 *vignettes/bibliography.bib
 3f232792702c1d5a94d7f30fdb307b6a *vignettes/diagnostics.Rmd
