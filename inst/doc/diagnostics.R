@@ -1,36 +1,36 @@
-## ----setup, message = FALSE, warning = FALSE, echo=F---------------------
+## ----setup, message = FALSE, warning = FALSE, echo=F--------------------------
 library(rprev)
 library(survival)
 library(ggplot2)
 data(prevsim)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 inc <- test_homogeneity(prevsim$entrydate,
                         population_size=3.2e6,
                         truncate_end=TRUE)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 summary(inc)
 
-## ----incidencerate, error = TRUE-----------------------------------------
+## ----incidencerate, error = TRUE----------------------------------------------
 inc$mean
 
-## ---- fig.width = 7, fig.height = 4--------------------------------------
+## ---- fig.width = 7, fig.height = 4-------------------------------------------
 plot(inc)
 
-## ----incidenceage, fig.width = 7, fig.height = 4, error = TRUE-----------
+## ----incidenceage, fig.width = 7, fig.height = 4, error = TRUE----------------
 ggplot(prevsim, aes(age, y=..count..)) +
     geom_line(stat='density') +
     xlim(0, 100) +
     labs(x='Age (years)', y='Number incident cases') +
     theme_bw()
 
-## ----survivaldiag, fig.width = 7, fig.height = 4-------------------------
+## ----survivaldiag, fig.width = 7, fig.height = 4------------------------------
 km <- survfit(Surv(time, status) ~ 1, data=prevsim)
 plot(km, lwd=2, col="blue", main="Overall Survival", xlab="Days", 
      ylab="Survival probability")
 
-## ----survivaldiag2, fig.width = 7, fig.height = 4------------------------
+## ----survivaldiag2, fig.width = 7, fig.height = 4-----------------------------
 ages = c(55, 65, 75, 85, 100)
 km2 <- survfit(Surv(time, status) ~ cut(age, breaks=ages), data=prevsim)
 plot(km2, lwd=2, col=1:length(ages), main="Survival stratified by age", xlab="Days", 
@@ -38,7 +38,7 @@ plot(km2, lwd=2, col=1:length(ages), main="Survival stratified by age", xlab="Da
 legend("topright", legend=substring(names(km2$strata), 25, 32), lty = 1, 
        col=1:length(ages))
 
-## ----survivaldiag4, fig.width = 7, fig.height = 4, results='hide'--------
+## ----survivaldiag4, fig.width = 7, fig.height = 4, results='hide'-------------
 plot(km, lwd=2, col="blue", mark.time=F, conf.int=T, xlab="Days", 
      ylab="Survival probability")
 num_reg_years <- 9
@@ -51,7 +51,7 @@ sapply(seq(num_reg_years),
                                                           registry_years[i + 1], ]), 
                          mark.time = F, conf.int = F))
 
-## ----survivaldiag3, fig.width = 7, fig.height = 4------------------------
+## ----survivaldiag3, fig.width = 7, fig.height = 4-----------------------------
 cx <- coxph(Surv(time, status) ~ age, data=prevsim)
 cxp <- survfit(cx, 
                newdata=data.frame(age=sapply(seq(length(ages) - 1), 
@@ -60,7 +60,7 @@ plot(cox.zph(cx))
 lines(cxp, lwd=2, col=1:length(ages), lty=2, mark.time=F)
 
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 cox.zph(cx)
 
 ## ----ageform3, warning=F, message=F, fig.width = 7, fig.height = 4, error = TRUE----
@@ -86,10 +86,10 @@ ggplot(preds_df, aes(x=age, y=lp)) +
     theme_bw() +
     labs(x='Age', y='Log relative hazard')
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 mod_spline
 
-## ----prevalencetotal, error = TRUE---------------------------------------
+## ----prevalencetotal, error = TRUE--------------------------------------------
 prevalence_total <- prevalence(index='2013-01-30', 
                                num_years_to_estimate=c(3, 5, 10, 20), 
                                data=prevsim, 
@@ -99,22 +99,22 @@ prevalence_total <- prevalence(index='2013-01-30',
                                population_size = 1e6,
                                death_column = 'eventdate')
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 prevalence_total$pval
 
-## ----test, error = TRUE--------------------------------------------------
+## ----test, error = TRUE-------------------------------------------------------
 test_prevalence_fit(prevalence_total)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 prevsurv <- survfit(prevalence_total, newdata=data.frame(age=60, sex='M'))
 prevsurv
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 summary(prevsurv, years=c(1, 3, 5, 10))
 
-## ---- fig.width=7, fig.height=4------------------------------------------
+## ---- fig.width=7, fig.height=4-----------------------------------------------
 plot(prevsurv)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 knitr::kable(head(prevalence_total$simulated))
 

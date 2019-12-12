@@ -1,8 +1,8 @@
 Package: rprev
 Type: Package
 Title: Estimating Disease Prevalence from Registry Data
-Version: 1.0.2
-Date: 2019-03-12
+Version: 1.0.3
+Date: 2019-12-11
 Authors@R: c(
         person("Stuart", "Lacy", email="stuart.lacy@york.ac.uk", role=c('cre', 'aut')),
         person("Simon", "Crouch", email="simon.crouch@york.ac.uk", role='aut'),
@@ -10,19 +10,20 @@ Authors@R: c(
         )
 Description: Estimates disease prevalence for a given index date, using existing
     registry data extended with Monte Carlo simulations.
+LazyData: true
 License: GPL-2
 Depends: R (>= 2.10), survival
 Imports: data.table, dplyr, ggplot2, lazyeval, lubridate, magrittr,
         tidyr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Suggests: flexsurv, flexsurvcure, knitr, rms, testthat, covr
 URL: https://github.com/stulacy/rprev-dev
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2019-03-12 15:18:08 UTC; stuart.lacy
+Packaged: 2019-12-11 15:34:23 UTC; stuart.lacy
 Author: Stuart Lacy [cre, aut],
   Simon Crouch [aut],
   Stephanie Lax [aut]
 Maintainer: Stuart Lacy <stuart.lacy@york.ac.uk>
 Repository: CRAN
-Date/Publication: 2019-03-12 16:20:02 UTC
+Date/Publication: 2019-12-12 09:20:02 UTC
