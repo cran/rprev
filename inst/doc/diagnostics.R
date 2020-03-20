@@ -106,7 +106,7 @@ prevalence_total$pval
 test_prevalence_fit(prevalence_total)
 
 ## -----------------------------------------------------------------------------
-prevsurv <- survfit(prevalence_total, newdata=data.frame(age=60, sex='M'))
+prevsurv <- survfit(prevalence_total, newdata=data.frame(age=60, sex='M', stringsAsFactors = TRUE))
 prevsurv
 
 ## -----------------------------------------------------------------------------
