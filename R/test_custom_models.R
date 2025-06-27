@@ -22,7 +22,7 @@ validate_incidence_model <- function(object, data, timeframe=3652) {
     if (is.null(object$call)) {
         stop("Error: object does not have a call attribute.")
     }
-    if (is.null(class(object)) | class(object) == 'list') {
+    if (is.null(class(object)) | (length(class(object)) == 1 & class(object)[1] == 'list')) {
         stop("Error: object does not have a unique class")
     }
 
@@ -91,7 +91,7 @@ validate_survival_model <- function(object, data, timeframe=3652, sample_size=10
     if (is.null(object$call)) {
         stop("Error: object does not have a call attribute.")
     }
-    if (is.null(class(object)) | class(object) == 'list') {
+    if (is.null(class(object)) | (length(class(object)) == 1 & class(object)[1] == 'list')) {
         stop("Error: object does not have a unique class")
     }
 

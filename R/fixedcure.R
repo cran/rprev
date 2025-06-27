@@ -163,9 +163,9 @@ extract_covars.fixedcure <- function(object) {
     unique(c(object$covars, object$pop_covars, 'age'))
 }
 
-print.fixedcure <- function(object, ...) {
-    to_print <- object[c('coefs', 'covars', 'call', 'dist', 'terms', 'pop_covars', 'cure_time')]
-    to_print$population_survival <- summary(object$pop_data)
-    print(to_print)
-
+#' @exportS3Method base::print
+print.fixedcure <- function(x, ...) {
+    to_print <- x[c('coefs', 'covars', 'call', 'dist', 'terms', 'pop_covars', 'cure_time')]
+    to_print$population_survival <- summary(x$pop_data)
+    base::print(to_print)
 }

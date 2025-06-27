@@ -1,3 +1,11 @@
+# rprev 1.0.6
+
+CMD CHECK fixes
+
+# rprev 1.0.5
+
+Added `rmarkdown` as a dependency
+
 # rprev 1.0.4
 
 Made changes to account for the upcoming stringsAsFactors = FALSE default argument to data.frame() in R 4.0 so that the package is backwards compatible.

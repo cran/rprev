@@ -13,17 +13,21 @@ inc <- test_homogeneity(prevsim$entrydate,
 summary(inc)
 
 ## ----incidencerate, error = TRUE----------------------------------------------
+try({
 inc$mean
+})
 
-## ---- fig.width = 7, fig.height = 4-------------------------------------------
+## ----fig.width = 7, fig.height = 4--------------------------------------------
 plot(inc)
 
 ## ----incidenceage, fig.width = 7, fig.height = 4, error = TRUE----------------
+try({
 ggplot(prevsim, aes(age, y=..count..)) +
     geom_line(stat='density') +
     xlim(0, 100) +
     labs(x='Age (years)', y='Number incident cases') +
     theme_bw()
+})
 
 ## ----survivaldiag, fig.width = 7, fig.height = 4------------------------------
 km <- survfit(Surv(time, status) ~ 1, data=prevsim)
@@ -64,6 +68,7 @@ lines(cxp, lwd=2, col=1:length(ages), lty=2, mark.time=F)
 cox.zph(cx)
 
 ## ----ageform3, warning=F, message=F, fig.width = 7, fig.height = 4, error = TRUE----
+try({
 library(rms)
 library(dplyr)
 
@@ -85,11 +90,13 @@ ggplot(preds_df, aes(x=age, y=lp)) +
     geom_line(colour='#0080ff', size=1.2) +
     theme_bw() +
     labs(x='Age', y='Log relative hazard')
+})
 
 ## -----------------------------------------------------------------------------
 mod_spline
 
 ## ----prevalencetotal, error = TRUE--------------------------------------------
+try({
 prevalence_total <- prevalence(index='2013-01-30', 
                                num_years_to_estimate=c(3, 5, 10, 20), 
                                data=prevsim, 
@@ -98,12 +105,15 @@ prevalence_total <- prevalence(index='2013-01-30',
                                dist='weibull', 
                                population_size = 1e6,
                                death_column = 'eventdate')
+})
 
 ## -----------------------------------------------------------------------------
 prevalence_total$pval
 
 ## ----test, error = TRUE-------------------------------------------------------
+try({
 test_prevalence_fit(prevalence_total)
+})
 
 ## -----------------------------------------------------------------------------
 prevsurv <- survfit(prevalence_total, newdata=data.frame(age=60, sex='M', stringsAsFactors = TRUE))
@@ -112,7 +122,7 @@ prevsurv
 ## -----------------------------------------------------------------------------
 summary(prevsurv, years=c(1, 3, 5, 10))
 
-## ---- fig.width=7, fig.height=4-----------------------------------------------
+## ----fig.width=7, fig.height=4------------------------------------------------
 plot(prevsurv)
 
 ## -----------------------------------------------------------------------------

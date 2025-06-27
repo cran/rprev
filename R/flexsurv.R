@@ -90,9 +90,10 @@ compress.model.matrices <- function(mml){
     X
 }
 
-summary.fns <- function(x){
+#' @exportS3Method base::summary
+summary.fns <- function(object, ...){
    function(t, ...) {
-       1 - x$dfns$p(t,...)
+       1 - object$dfns$p(t,...)
    }
 }
 
